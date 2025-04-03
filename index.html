@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura de Propuesta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 30px;
+            color: #ff69b4;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #32cd32;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Bienvenida a tu aventura!</h1>
+    <p id="mensaje">¿Estás lista para embarcarte en una aventura? Haz clic en "Sí" para comenzar.</p>
+    
+    <button id="opcion1" onclick="decidir1()">Sí</button>
+    <button id="opcion2" onclick="decidir2()">No</button>
+
+    <script>
+        let mensaje = document.getElementById('mensaje');  // Guardamos el elemento mensaje
+        let opcion1 = document.getElementById('opcion1');  // Guardamos el botón de "Sí"
+        let opcion2 = document.getElementById('opcion2');  // Guardamos el botón de "No"
+        
+        // Función para comenzar la aventura
+        function decidir1() {
+            // Ocultamos los botones iniciales
+            opcion1.style.display = 'none';
+            opcion2.style.display = 'none';
+            
+            // Actualizamos el mensaje
+            mensaje.innerText = 'Decidiste ir a la aventura... ¿Prefieres explorar el bosque o la ciudad?';
+
+            // Creamos los nuevos botones
+            let botonBosque = document.createElement('button');
+            botonBosque.innerText = 'Explorar el bosque';
+            botonBosque.onclick = function() { explorarBosque(); };
+            document.body.appendChild(botonBosque);
+
+            let botonCiudad = document.createElement('button');
+            botonCiudad.innerText = 'Ir a la ciudad';
+            botonCiudad.onclick = function() { explorarCiudad(); };
+            document.body.appendChild(botonCiudad);
+        }
+
+        function decidir2() {
+            alert('¡No te preocupes! ¡La aventura puede esperar!');
+        }
+
+        // Función para explorar el bosque
+        function explorarBosque() {
+            mensaje.innerText = '¡Te encuentras en un misterioso bosque! ¿Enfrentas al monstruo o huyes?';
+
+            // Eliminar los botones anteriores
+            eliminarBotones();
+
+            // Mostrar nuevas opciones
+            let botonEnfrentar = document.createElement('button');
+            botonEnfrentar.innerText = 'Enfrentar al monstruo';
+            botonEnfrentar.onclick = function() { propuestaFinal(); };
+            document.body.appendChild(botonEnfrentar);
+
+            let botonHuir = document.createElement('button');
+            botonHuir.innerText = 'Huir';
+            botonHuir.onclick = function() { propuestaFinal(); };
+            document.body.appendChild(botonHuir);
+        }
+
+        // Función para explorar la ciudad
+        function explorarCiudad() {
+            mensaje.innerText = 'Llegaste a una gran plaza. ¿Beberás de la fuente mágica o seguirás explorando?';
+
+            // Eliminar los botones anteriores
+            eliminarBotones();
+
+            // Mostrar nuevas opciones
+            let botonBeber = document.createElement('button');
+            botonBeber.innerText = 'Beber de la fuente mágica';
+            botonBeber.onclick = function() { propuestaFinal(); };
+            document.body.appendChild(botonBeber);
+
+            let botonSeguir = document.createElement('button');
+            botonSeguir.innerText = 'Seguir explorando';
+            botonSeguir.onclick = function() { propuestaFinal(); };
+            document.body.appendChild(botonSeguir);
+        }
+
+        // Función para eliminar botones de decisiones previas
+        function eliminarBotones() {
+            let botones = document.querySelectorAll('button');
+            botones.forEach(button => button.style.display = 'none'); // Ocultamos todos los botones anteriores
+        }
+
+        // Propuesta final
+        function propuestaFinal() {
+            mensaje.innerText = '¡Felicidades! Has llegado al final de la aventura...\n¿Quieres ser mi novia?';
+
+            // Eliminar los botones anteriores
+            eliminarBotones();
+
+            // Crear el botón de respuesta
+            let botonAceptar = document.createElement('button');
+            botonAceptar.innerText = 'Sí';
+            botonAceptar.onclick = function() {
+                alert('¡Lo lograste! Mi respuesta es... ¡Sí, quiero ser tu novia!');
+            };
+            document.body.appendChild(botonAceptar);
+        }
+    </script>
+</body>
+</html>
